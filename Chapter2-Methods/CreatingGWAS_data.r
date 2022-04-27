@@ -55,7 +55,7 @@ for (ikk in plates_to_do){
   print(paste("Now on plate: ", ikk))
 Plate <- plate_strains[,ikk]
 for (i in Plate){
-  Variablename <- paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Plate", ikk, "VCF", cigar_stuff, "\\NCYC",i,"_freebayes_SNP_genome.vcf", sep = '')
+  Variablename <- paste("All_VCF\\Plate", ikk, "VCF", cigar_stuff, "\\NCYC",i,"_freebayes_SNP_genome.vcf", sep = '')
   vcf <- readVcf(Variablename)
   vcf1 <- vcf[lapply(info(vcf)$TYPE,length)==1]     #Only single-nucleotide changes
   vcf2 <- vcf1[as.character(info(vcf1)$TYPE)=="snp"]#Only those classed as SNPs
@@ -72,7 +72,7 @@ for (i in Plate){
 
 ## same, but for ZYGO 'plate'
 for (i in Plate){
-  Variablename <- paste("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Zygomyces_VCFs\\NCYC",i,"_freebayes_SNP_genome.vcf", sep = '')
+  Variablename <- paste("All_VCF\\Zygomyces_VCFs\\NCYC",i,"_freebayes_SNP_genome.vcf", sep = '')
   vcf <- readVcf(Variablename)
   vcf1 <- vcf[lapply(info(vcf)$TYPE,length)==1]     #Only single-nucleotide changes
   vcf2 <- vcf1[as.character(info(vcf1)$TYPE)=="snp"]#Only those classed as SNPs
@@ -86,7 +86,7 @@ for (i in Plate){
 }
 ## same, but for DE 'plate'
 for (i in Plate){
-  Variablename <- paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PlateDEVCF", cigar_stuff,"\\",i,"_freebayes_SNP_genome.vcf", sep = '')
+  Variablename <- paste("All_VCF\\PlateDEVCF", cigar_stuff,"\\",i,"_freebayes_SNP_genome.vcf", sep = '')
   vcf <- readVcf(Variablename)
   vcf1 <- vcf[lapply(info(vcf)$TYPE,length)==1]     #Only single-nucleotide changes
   vcf2 <- vcf1[as.character(info(vcf1)$TYPE)=="snp"]#Only those classed as SNPs
@@ -127,7 +127,7 @@ for (i in elementNROWS(allele2)){
 
 
 for (i in Plate1){
-  Variablename <- paste("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\NCYC",i,"_freebayes_SNP_genome.vcf", sep = '')
+  Variablename <- paste("All_VCF\\NCYC",i,"_freebayes_SNP_genome.vcf", sep = '')
   VCF <- readVcf(Variablename)
   MatrixVCF <- genotypeToSnpMatrix(VCF)
   head(MatrixVCF)
@@ -164,8 +164,8 @@ info(vcf3)
 potato <- (vcf3)
 
 
-
-vcf <- readVcf("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\NCYC1_freebayes_SNP_genome.vcf")
+# test
+vcf <- readVcf("All_VCF\\NCYC1_freebayes_SNP_genome.vcf")
 header(vcf)
 res <- genotypeToSnpMatrix(vcf)
 head(res)

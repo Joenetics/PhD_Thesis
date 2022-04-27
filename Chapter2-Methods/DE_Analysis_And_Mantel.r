@@ -11,7 +11,7 @@ library("ggplot2")
 
 
 ##### HEATMAP of DE Resistance scores.
-file_for_series <- read.csv("C:\\Users\\Josep\\Desktop\\PhD_stuff\\NCYC_Excel\\PythonStrainFinder\\WekaPredictedResistanceDEOnly.csv", header = TRUE)
+file_for_series <- read.csv("GrwothFiles_Folder\\WekaPredictedResistanceDEOnly.csv", header = TRUE)
 
 row.names(file_for_series) <- file_for_series$Well  # set row names
 file_for_series <- file_for_series[,-1]             # remove 'well' column with rownames.
@@ -66,10 +66,10 @@ library(ade4)
 distance_method <- c("Percentage", "TamD", "JCD", "K2P", "TND")
 
 for (d_method in distance_method){
-  #psiko_Q_data <- read.table("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly.Q", sep = " ", header = FALSE, row.names = 1)
-  #sane_Q_data <- read.table(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\SANE_QMatrix_Cigar_CoreOnly_",d_method, ".Q", sep = ""), sep = "\t", header = FALSE, row.names = 1)
-  psiko_Q_data <- read.table("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)
-  sane_Q_data <- read.table(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\SANE_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly_",d_method, ".Q", sep = ""), sep = "\t", header = FALSE, row.names = 1)
+  #psiko_Q_data <- read.table("All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly.Q", sep = " ", header = FALSE, row.names = 1)
+  #sane_Q_data <- read.table(paste("All_QMatrices\\SANE_QMatrix_Cigar_CoreOnly_",d_method, ".Q", sep = ""), sep = "\t", header = FALSE, row.names = 1)
+  psiko_Q_data <- read.table("All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)
+  sane_Q_data <- read.table(paste("All_QMatrices\\SANE_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly_",d_method, ".Q", sep = ""), sep = "\t", header = FALSE, row.names = 1)
   
   colnames(psiko_Q_data) <- c("Cluster1", "Cluster2", "Cluster3")
   colnames(sane_Q_data) <- c("Cluster1", "Cluster2", "Cluster3")
@@ -122,14 +122,14 @@ FileName7 <- paste("DE_Week17_Plate1.csv", sep = '')
 FileName8 <- paste("DE_Week17_Plate2.csv", sep = '')
 
 
-MainFile1 <- read.csv(paste ("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName1, sep = ''))
-MainFile2 <- read.csv(paste ("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName2, sep = ''))
-MainFile3 <- read.csv(paste ("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName3, sep = ''))
-MainFile4 <- read.csv(paste ("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName4, sep = ''))
-MainFile5 <- read.csv(paste ("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName5, sep = ''))
-MainFile6 <- read.csv(paste ("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName6, sep = ''))
-MainFile7 <- read.csv(paste ("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName7, sep = ''))
-MainFile8 <- read.csv(paste ("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName8, sep = ''))
+MainFile1 <- read.csv(paste ("Directed_Evolution\\", FileName1, sep = ''))
+MainFile2 <- read.csv(paste ("Directed_Evolution\\", FileName2, sep = ''))
+MainFile3 <- read.csv(paste ("Directed_Evolution\\", FileName3, sep = ''))
+MainFile4 <- read.csv(paste ("Directed_Evolution\\", FileName4, sep = ''))
+MainFile5 <- read.csv(paste ("Directed_Evolution\\", FileName5, sep = ''))
+MainFile6 <- read.csv(paste ("Directed_Evolution\\", FileName6, sep = ''))
+MainFile7 <- read.csv(paste ("Directed_Evolution\\", FileName7, sep = ''))
+MainFile8 <- read.csv(paste ("Directed_Evolution\\", FileName8, sep = ''))
 
 # blabla[row,column]
 JustData1 <- MainFile1[3:98,4:100]            #Take all the datapoints (every half hour) for all wells.
@@ -171,7 +171,7 @@ FourPlotDE <- function(plotted, yesno, platenumber){
   cat("Ignore warnings. They're for row names. Still need to fix that")
   if (yesno == TRUE){
     print("potate")
-    dev.copy2pdf(file = paste("C:/Users/Jsdsa/Desktop/PhD_stuff/DE_", "Plate", platenumber,".pdf", sep = ''))
+    dev.copy2pdf(file = paste("DE_", "Plate", platenumber,".pdf", sep = ''))
   }
 }
 
@@ -278,7 +278,7 @@ for (file_number in c(1: length(all_files))){
   file_name <- all_files[file_number]
   FileName <- paste(file_name, sep = '')
   #print(FileName)
-  MainFile <- read.csv(paste("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", FileName, sep = ''))
+  MainFile <- read.csv(paste("Directed_Evolution\\", FileName, sep = ''))
   JustData1 <- MainFile[3:98,4:100]            #Take all the datapoints (every half hour) for all wells.
   
   std <- function(x) sd(x)/sqrt(length(x))
@@ -412,38 +412,6 @@ for (file_number in c(1: length(all_files))){
     
     
     
-    
-    #####
-    #if (LogOfValues == TRUE && printall == TRUE){
-    #  plot(Tab$Cycle, Tab$OpticalDensity, col = Tab$Group ,pch = 16, yaxt = 'n',xaxt = 'n',  cex = 1, ylim=c(-1,1) , ylab = "OpticalDensity", main = paste("Replicate Test Well", WellNames[i], sep = ' '))  
-    #  legend("topleft", legend=c(signif(Slopes3[48], digits = 3), signif(Slopes4[48], digits = 3)), col=c("red", "blue"), cex = 1, x.intersp = 0.1,y.intersp = 0.7)
-    #  
-    #  ##axis(1,at=c(1:nrow(Tab)),labels=rownames(Tab))
-    #  axis(2, 0:3)
-    #  points(xl[infl ], out[infl ], col="black")
-    #  lines(xl, out, col='red', lwd=2)
-    #}
-    #else{
-    #  plot(Tab$Cycle, Tab$OpticalDensity, col = Tab$Group ,pch = 16, yaxt = 'n',xaxt = 'n',  cex = 1, ylim=c(-3,3) , ylab = "OpticalDensity", main = paste("Replicate Test Well", WellNames[i], sep = ' '))  
-    #  legend("topleft", legend=c(signif(Slopes3[48], digits = 3), signif(Slopes4[48], digits = 3)), col=c("red", "blue"), cex = 1, x.intersp = 0.1,y.intersp = 0.7)
-    #  
-    #  ##axis(1,at=c(1:nrow(Tab)),labels=rownames(Tab))
-    #  axis(2, 0:3)
-    #  points(xl[infl ], out[infl ], col="black")
-    #  lines(xl, out, col='red', lwd=2)  
-    #}
-    
-  } 
-  #Highest Slope Control
-  #Timepoint control
-  #Max OD Control
-  # Rough Inflection Control
-  #Highest slope furfural
-  # Timepoint Furfural
-  #MaxOD Furfural
-  #Rough INflection furfural
-  #C value
-  #Strain Number
   DE_df[,((file_number-1) * 10) + 1] <- Slope_Control
   DE_df[,((file_number-1) * 10) + 2] <- timepoint_control
   DE_df[,((file_number-1) * 10) + 3] <- maxod_control
@@ -495,7 +463,7 @@ for (bloc in c(0:(length(DE_df) - 1))){
 colnames(for_csv) <- c("Highest Slope Control", "Timepoint control", "Max OD Control", "Rough Inflection Control","Highest Slope Furfural", "Timepoint Furfural", "MaxOD Furfural", "Rough Inflection Furfural", "C Value", "Well Number")
 
 for_csv <- for_csv[-1,]
-write.table(for_csv, paste("C:\\Users\\Joe\\Desktop\\PhD_stuff\\Directed_Evolution\\", "DE_Data.csv", sep = ''), sep = ",", col.names = TRUE, row.names = TRUE)
+write.table(for_csv, paste("Directed_Evolution\\", "DE_Data.csv", sep = ''), sep = ",", col.names = TRUE, row.names = TRUE)
 
 
 ##########END HERE

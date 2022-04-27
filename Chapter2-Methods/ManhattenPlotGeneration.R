@@ -87,68 +87,68 @@ base_directory = "C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_
 
 if (PlatesName == "1-2-3-4-5-6-7-DE"){
   print("All plates and DE...")
-  SNPs <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\Linear_Regression_", PartialOrBinary,"_SNPs_MappedToReference_Plates_", PlatesName, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, ".txt", sep =''), sep = ' ', header= FALSE)
+  SNPs <- read.csv(paste("Joined_MAF_files\\Linear_Regression_", PartialOrBinary,"_SNPs_MappedToReference_Plates_", PlatesName, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, ".txt", sep =''), sep = ' ', header= FALSE)
   print("DE SNPs done...")
-  Letter_SNPs <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\ATGC_File_AllStrains_Plates_", PlatesName, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, ".csv", sep= ''), header=FALSE)
+  Letter_SNPs <- read.csv(paste("Joined_MAF_files\\ATGC_File_AllStrains_Plates_", PlatesName, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, ".csv", sep= ''), header=FALSE)
   print("DE Letter SNPs done...")
-  #TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\NCYC_Excel\\PythonStrainFinder\\WekaPredictedResistanceLogGrowthSacchOnlyDoubleReduced666.csv", header= TRUE)  # plates 1-9, not DE
-  TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\NCYC_Excel\\PythonStrainFinder\\WekaPredictedResistanceLogGrowthDE666.csv", header= TRUE)  # DE growth!!
-  #TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\NCYC_Excel\\PythonStrainFinder\\JoinedSlopeResultsLogGrowthBinaryResistance_8OrGreater.csv", header= TRUE)
-  #TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Josephh_NMR_TraitData.csv", header= TRUE, row.names = 1)
+  #TraitData <- read.csv("GrowthFiles_Folder\\WekaPredictedResistanceLogGrowthSacchOnlyDoubleReduced666.csv", header= TRUE)  # plates 1-9, not DE
+  TraitData <- read.csv("GrowthFiles_Folder\\WekaPredictedResistanceLogGrowthDE666.csv", header= TRUE)  # DE growth!!
+  #TraitData <- read.csv("GrowthFiles_Folder\\JoinedSlopeResultsLogGrowthBinaryResistance_8OrGreater.csv", header= TRUE)
+  #TraitData <- read.csv("Josephh_NMR_TraitData.csv", header= TRUE, row.names = 1)
   print("DE Trait Data done...")
-  GeneNames <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\MAFfile_HighQuality_SNPsOnly_Plates_", PlatesName, Species, IncludingMasked,S28COnly, SCset, cigar_stuff, ".csv", sep = ''), header= FALSE)
+  GeneNames <- read.csv(paste("Joined_MAF_files\\MAFfile_HighQuality_SNPsOnly_Plates_", PlatesName, Species, IncludingMasked,S28COnly, SCset, cigar_stuff, ".csv", sep = ''), header= FALSE)
   print("DE Gene Names done...")
-  SelectListOfStrains <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\OnlyPlates_", PlatesName,"_OnlySpecies_", Species,".csv", sep =''), header = TRUE)
+  SelectListOfStrains <- read.csv(paste("Joined_MAF_files\\OnlyPlates_", PlatesName,"_OnlySpecies_", Species,".csv", sep =''), header = TRUE)
   print("DE Select List Of Strains done...")
-  Qmatrix <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly", Species,".Q", sep =''), sep = " ", header = FALSE, row.names = 1)
+  Qmatrix <- read.csv(paste("All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly", Species,".Q", sep =''), sep = " ", header = FALSE, row.names = 1)
   print("DE QMatrix done...")
 } else if (length(Plates) ==1){
   print("Single plate analysis")
-  SNPs <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Plate", PlatesName, "VCF", cigar_stuff, "_AfterR\\", CoreOnly, "Linear_Regression_",PartialOrBinary,"_SNPs_MappedToReference_Plate", PlatesName, IncludingMasked, S28COnly, SCset, cigar_stuff, ".txt", sep = ''), sep = ' ', header= FALSE)
+  SNPs <- read.csv(paste("All_VCF\\Plate", PlatesName, "VCF", cigar_stuff, "_AfterR\\", CoreOnly, "Linear_Regression_",PartialOrBinary,"_SNPs_MappedToReference_Plate", PlatesName, IncludingMasked, S28COnly, SCset, cigar_stuff, ".txt", sep = ''), sep = ' ', header= FALSE)
   print("SNPs done...")
-  Letter_SNPs <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Plate", PlatesName, "VCF", cigar_stuff, "_AfterR\\", CoreOnly, "ATGC_File_AllStrains_Plate", PlatesName, IncludingMasked, S28COnly,SCset, cigar_stuff, ".csv", sep = ''), header=FALSE)
+  Letter_SNPs <- read.csv(paste("All_VCF\\Plate", PlatesName, "VCF", cigar_stuff, "_AfterR\\", CoreOnly, "ATGC_File_AllStrains_Plate", PlatesName, IncludingMasked, S28COnly,SCset, cigar_stuff, ".csv", sep = ''), header=FALSE)
   print("Letter SNPs done...")
-  #TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\NCYC Excel\\PythonStrainFinder\\All9PlatesForWeka.csv", header= TRUE)
-  TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\NCYC_Excel\\PythonStrainFinder\\WekaPredictedResistanceLogGrowthDE666.csv", header= TRUE)  # DE growth!!
+  #TraitData <- read.csv(Growthfiles_Folder\\All9PlatesForWeka.csv", header= TRUE)
+  TraitData <- read.csv("Growthfiles_FolderWekaPredictedResistanceLogGrowthDE666.csv", header= TRUE)  # DE growth!!
   print("TraitData done...")
-  GeneNames <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Plate", PlatesName, "VCF", cigar_stuff, "_AfterR\\", CoreOnly, "MAFfile_HighQuality_SNPsOnly_Plate", PlatesName, IncludingMasked, S28COnly, SCset, cigar_stuff, ".csv", sep = ''), header= FALSE)
+  GeneNames <- read.csv(paste("All_VCF\\Plate", PlatesName, "VCF", cigar_stuff, "_AfterR\\", CoreOnly, "MAFfile_HighQuality_SNPsOnly_Plate", PlatesName, IncludingMasked, S28COnly, SCset, cigar_stuff, ".csv", sep = ''), header= FALSE)
   print("Gene Names done...")
-  #Qmatrix <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Plate", PlatesName, "VCF_AfterR\\QMatrixForPlates_", PlatesName,".Q", sep =''), sep = " ", row.names = 1, header = FALSE)
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Josephh_SNP.Q", sep = " ", header = FALSE)
-  Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked_DEonly.Q", sep = " ", header = FALSE, row.names = 1) # for DE?
-  #Qmatrix <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly", Species,".Q", sep =''), sep = " ", header = FALSE, row.names = 1)
+  #Qmatrix <- read.csv(paste("All_QMatrices\\Plate", PlatesName, "VCF_AfterR\\QMatrixForPlates_", PlatesName,".Q", sep =''), sep = " ", row.names = 1, header = FALSE)
+  #Qmatrix <- read.csv("All_QMatrices\\Josephh_SNP.Q", sep = " ", header = FALSE)
+  Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked_DEonly.Q", sep = " ", header = FALSE, row.names = 1) # for DE?
+  #Qmatrix <- read.csv(paste("All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly", Species,".Q", sep =''), sep = " ", header = FALSE, row.names = 1)
   print("Single Q-Matrix read in...")
   }else {
   print("Starting Multi-plate...")
-  SNPs <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\Linear_Regression_", PartialOrBinary,"_SNPs_MappedToReference_Plates_", PlatesName, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, ".txt", sep =''), sep = ' ', header= FALSE)
+  SNPs <- read.csv(paste("Joined_MAF_files\\Linear_Regression_", PartialOrBinary,"_SNPs_MappedToReference_Plates_", PlatesName, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, ".txt", sep =''), sep = ' ', header= FALSE)
   print("Multi-plate SNPs done...")
-  Letter_SNPs <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\ATGC_File_AllStrains_Plates_", PlatesName, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, ".csv", sep= ''), header=FALSE)
+  Letter_SNPs <- read.csv(paste("Joined_MAF_files\\ATGC_File_AllStrains_Plates_", PlatesName, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, ".csv", sep= ''), header=FALSE)
   print("Multi-plate Letter SNPs done...")
-  TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\NCYC_Excel\\PythonStrainFinder\\WekaPredictedResistanceLogGrowthSacchOnlyDoubleReduced666.csv", header= TRUE)  # plates 1-9, not DE. BEST FURFURAL ONE
+  TraitData <- read.csv("GrowthFiles_Folder\\WekaPredictedResistanceLogGrowthSacchOnlyDoubleReduced666.csv", header= TRUE)  # plates 1-9, not DE. BEST FURFURAL ONE
   #CoreOnlyATGC_File_AllStrains_Plates_1-2-3-4-5-6-7SacchOnlyNoMaskedDoubleReduced_ATGCClusters_JCD5_3branches.q
-  #TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\RStudio_YNB_Metabolites_Updated.csv", header= TRUE, row.names = 1)  # plates 1-9 for all strains. YNB NMR metabolite data. NOT FURFURAL
-  #TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\RStudio_Malt_Metabolites.csv", header= TRUE, row.names = 1)  # plates 1-9 for all strains. Malt NMR metabolite data. NOT FURFURAL
-  #TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\NCYC_Excel\\PythonStrainFinder\\JoinedSlopeResultsLogGrowthBinaryResistance_8OrGreater.csv", header= TRUE)
-  #TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Josephh_NMR_TraitData.csv", header= TRUE, row.names = 1)
+  #TraitData <- read.csv("GrowthFiles_Folder\\RStudio_YNB_Metabolites_Updated.csv", header= TRUE, row.names = 1)  # plates 1-9 for all strains. YNB NMR metabolite data. NOT FURFURAL
+  #TraitData <- read.csv("GrowthFiles_Folder\\RStudio_Malt_Metabolites.csv", header= TRUE, row.names = 1)  # plates 1-9 for all strains. Malt NMR metabolite data. NOT FURFURAL
+  #TraitData <- read.csv("GrowthFiles_Folder\\JoinedSlopeResultsLogGrowthBinaryResistance_8OrGreater.csv", header= TRUE)
+  #TraitData <- read.csv("GrowthFiles_Folder\\Josephh_NMR_TraitData.csv", header= TRUE, row.names = 1)
   print("Multi-plate Trait Data done...")
-  GeneNames <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\MAFfile_HighQuality_SNPsOnly_Plates_", PlatesName, Species, IncludingMasked,S28COnly, SCset, cigar_stuff, ".csv", sep = ''), header= FALSE)
+  GeneNames <- read.csv(paste("Joined_MAF_files\\MAFfile_HighQuality_SNPsOnly_Plates_", PlatesName, Species, IncludingMasked,S28COnly, SCset, cigar_stuff, ".csv", sep = ''), header= FALSE)
   print("Multi-plate Gene Names done...")
-  #SelectListOfStrains <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\OnlyPlates_", PlatesName,"_OnlySpecies_", Species,".csv", sep =''), header = TRUE)
+  #SelectListOfStrains <- read.csv(paste("Joined_MAF_files\\OnlyPlates_", PlatesName,"_OnlySpecies_", Species,".csv", sep =''), header = TRUE)
   print("Multi-plate Select List Of Strains done...")
-  #Qmatrix <- read.csv(paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly", Species,".Q", sep =''), sep = " ", header = FALSE, row.names = 1)
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\SANE_QMatrix_Cigar_CoreOnly_SacchOnly_TamD.q", sep = "\t", header = FALSE, row.names = 1)
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) #
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_CoreOnly_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) #.
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) #
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) # DECENT 17/09/2021
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) # DECENT 17/09/2021
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)# DECENT 17/09/2021
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)# DECENT 17/09/2021
-  Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked.Q", sep = " ", header = FALSE, row.names = 1)# All strains! 17/09/2021
-  Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\SANE_QMatrix_Cigar_NoMasked_K2P.Q", sep = "\t", header = FALSE, row.names = 1)# All strains! 17/09/2021
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)# DECENT 17/09/2021
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)  # DECENT 18/09/2021
-  #Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\All_QMatrices\\SANE_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly_TamD.Q", sep = "\t", header = FALSE, row.names = 1)  # own TAMD distance (best distribution on mantel test figure.) 23/09/2021
+  #Qmatrix <- read.csv(paste("All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly", Species,".Q", sep =''), sep = " ", header = FALSE, row.names = 1)
+  #Qmatrix <- read.csv("All_QMatrices\\SANE_QMatrix_Cigar_CoreOnly_SacchOnly_TamD.q", sep = "\t", header = FALSE, row.names = 1)
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) #
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_CoreOnly_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) #.
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) #
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) # DECENT 17/09/2021
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1) # DECENT 17/09/2021
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)# DECENT 17/09/2021
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)# DECENT 17/09/2021
+  Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_NoMasked.Q", sep = " ", header = FALSE, row.names = 1)# All strains! 17/09/2021
+  Qmatrix <- read.csv("All_QMatrices\\SANE_QMatrix_Cigar_NoMasked_K2P.Q", sep = "\t", header = FALSE, row.names = 1)# All strains! 17/09/2021
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)# DECENT 17/09/2021
+  #Qmatrix <- read.csv("All_QMatrices\\PSIKO_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly.Q", sep = " ", header = FALSE, row.names = 1)  # DECENT 18/09/2021
+  #Qmatrix <- read.csv("All_QMatrices\\SANE_QMatrix_Cigar_CoreOnly_NoMasked_SacchOnly_TamD.Q", sep = "\t", header = FALSE, row.names = 1)  # own TAMD distance (best distribution on mantel test figure.) 23/09/2021
   
   print("QMatrix done...")
   
@@ -605,21 +605,21 @@ for (i in c(1:dim(SelectSNPs)[1])){
 
 FileForPythonThenWeka <- data.frame(GeneNames$V1, LmerPValues )
 colnames(FileForPythonThenWeka) <- c("GeneNames", "Pvalue_of_Gene")
-write.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PValue_Files\\lmerPValues_Plates_", PlatesName,"_",Species, IncludingMasked,S28COnly,SCset, cigar_stuff,  "_MaltEthanol.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
+write.table(FileForPythonThenWeka, paste("PValue_Files\\lmerPValues_Plates_", PlatesName,"_",Species, IncludingMasked,S28COnly,SCset, cigar_stuff,  "_MaltEthanol.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 FileForPythonThenWeka <- data.frame(GeneNames$V1, PValues)
 colnames(FileForPythonThenWeka) <- c("GeneNames", "Pvalue_of_Gene")
-write.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PValue_Files\\PValues_Plates_", PlatesName,"_", PartialOrBinary, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, "_MaltEthanol.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
+write.table(FileForPythonThenWeka, paste("PValues_Plates_", PlatesName,"_", PartialOrBinary, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, "_MaltEthanol.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 
 FileForPythonThenWeka <- data.frame(GeneNames$V1, LmerPValues, Positive_Negative_Correlation)
 colnames(FileForPythonThenWeka) <- c("GeneNames", "Pvalue_of_Gene", "Positive_Or_Negative_Correlation")
-write.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PValue_Files\\lmerPValues_Plates_", PlatesName,"_",Species, IncludingMasked,S28COnly,SCset, cigar_stuff,  "Glycerol_with_PSIKO_Cigar_NoMasked.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
+write.table(FileForPythonThenWeka, paste("PValue_Files\\lmerPValues_Plates_", PlatesName,"_",Species, IncludingMasked,S28COnly,SCset, cigar_stuff,  "Glycerol_with_PSIKO_Cigar_NoMasked.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 
-write.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PValue_Files\\lmerPValues_Plates_", PlatesName,"_",Species, IncludingMasked,S28COnly,SCset, cigar_stuff,  "666infpoints_SlopePoint_maxOD_with_PSIKO_DE_NoMasked.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
+write.table(FileForPythonThenWeka, paste("PValue_Files\\lmerPValues_Plates_", PlatesName,"_",Species, IncludingMasked,S28COnly,SCset, cigar_stuff,  "666infpoints_SlopePoint_maxOD_with_PSIKO_DE_NoMasked.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 FileForPythonThenWeka <- data.frame(GeneNames$V1, PValues, Positive_Negative_Correlation)
 colnames(FileForPythonThenWeka) <- c("GeneNames", "Pvalue_of_Gene", "Positive_Or_Negative_Correlation")
-write.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PValue_Files\\PValues_Plates_", PlatesName,"_", PartialOrBinary, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, "666infpoints_SlopePoint_maxOD_NoQ(DE).csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
+write.table(FileForPythonThenWeka, paste("PValue_Files\\PValues_Plates_", PlatesName,"_", PartialOrBinary, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, "666infpoints_SlopePoint_maxOD_NoQ(DE).csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 
-write.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PValue_Files\\PValues_Plates_", PlatesName,"_", PartialOrBinary, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, "666infpoints_SlopePoint_maxOD_NoQ.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
+write.table(FileForPythonThenWeka, paste("PValue_Files\\PValues_Plates_", PlatesName,"_", PartialOrBinary, Species, IncludingMasked, S28COnly,SCset, cigar_stuff, "666infpoints_SlopePoint_maxOD_NoQ.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 #below is temp for kai
 w#rite.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PValue_Files\\PValues_Plates_Succinate_Kai.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 
@@ -636,7 +636,7 @@ w#rite.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff
 
 SameAsTopForOD <- data.frame(row.names(TraitData1), TraitData1$Binary.Resistance..1..resistant.)
 colnames(SameAsTopForOD) <- c("Strain", "Strain_Resistance")
-write.table(SameAsTopForOD, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joined_MAF_files\\Strain_and_Resistance_", PlatesName, "_", Species, "12.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
+write.table(SameAsTopForOD, paste("Joined_MAF_files\\Strain_and_Resistance_", PlatesName, "_", Species, "12.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 
 
 #printing names of genes with selected p-values in list
@@ -689,7 +689,7 @@ manhattan(MyGWAS, col=c("blue4","red3", "green2", "orange3"), chrlabs= ORFnames,
 
 
 ##small histogram images. 'Characteristic frequency by K-means cluster size'
-input_kmeans_data <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\K_Means_Changes_To_Characteristics.csv", header = TRUE)
+input_kmeans_data <- read.csv("K_Means_Changes_To_Characteristics.csv", header = TRUE)
 input_kmeans_data <- data.frame(input_kmeans_data)
 
 titles <- c("Inflection Point", "MaxOD", "Timepoint of ??")
@@ -816,7 +816,7 @@ traitvector[traitvector == "18"] <- "cyan"
 #plot3d(pc$scores[,1:3], col=traitvector, xlab = "X", ylab = "Y", zlab = "Z", box = TRUE ,axes=FALSE)
 plot3d(pc$scores[,1:3], col=traitvector, xlab = "X", ylab = "Y", zlab = "Z")
 
-#movie3d(spin3d(axis = c(0, 0, 1)), 5, dev = rgl.cur(), dir = tempdir("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\GIF\\"), convert = TRUE)
+#movie3d(spin3d(axis = c(0, 0, 1)), 5, dev = rgl.cur(), dir = tempdir("GIF\\"), convert = TRUE)
 movie3d(spin3d(axis = c(0, 1, 0)), 12, dev = rgl.cur(), dir = getwd())
 
 
@@ -900,6 +900,6 @@ for (i in c(1:dim(dfSNPs2)[1])){
 }
 FileForPythonThenWeka <- data.frame(GeneNames$V1, LmerPValues, Positive_Negative_Correlation)
 colnames(FileForPythonThenWeka) <- c("GeneNames", "Pvalue_of_Gene", "Positive_Or_Negative_Correlation")
-write.table(FileForPythonThenWeka, paste("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\PValue_Files\\lmerPValues_",cigar_stuff, IncludingMasked, Species, S28COnly, SCset,  column_name, "_with_", Sane_or_Psiko, "_Cigar_NoMasked.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
+write.table(FileForPythonThenWeka, paste("PValue_Files\\lmerPValues_",cigar_stuff, IncludingMasked, Species, S28COnly, SCset,  column_name, "_with_", Sane_or_Psiko, "_Cigar_NoMasked.csv", sep = ''), sep = ",", col.names = FALSE, row.names = FALSE)
 }
 #1) 

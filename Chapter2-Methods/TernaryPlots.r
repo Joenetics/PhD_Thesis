@@ -25,12 +25,12 @@ install.packages('Ternary')
 library('Ternary')
 citation("Ternary")
 
-Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joseph_SNPs_PSIKO.Q", sep = " ", header = FALSE, row.names = 1)  # Using PSIKO Q matrix from Jo & Popescu
-#Qmatrix <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Joseph_SNPs_SANE.Q", sep = " ", header = FALSE, row.names = 1)  # Using SANE Q Matrix I designed.
+Qmatrix <- read.csv("All_QMatrices\\Joseph_SNPs_PSIKO.Q", sep = " ", header = FALSE, row.names = 1)  # Using PSIKO Q matrix from Jo & Popescu
+#Qmatrix <- read.csv("All_QMatrices\\Joseph_SNPs_SANE.Q", sep = " ", header = FALSE, row.names = 1)  # Using SANE Q Matrix I designed.
 
 
-TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\Malt_concentrations_Updated.csv", header= TRUE, row.names = 1)  # plates 1-9 for all strains. YNB NMR metabolite data. NOT FURFURAL
-TraitData <- read.csv("C:\\Users\\Joseph\\Desktop\\PhD_stuff\\Jo_Stuff\\Programs_for_joShare\\RStudio_YNB_Metabolites_Updated.csv", header= TRUE, row.names = 1)  # plates 1-9 for all strains. Malt NMR metabolite data. NOT FURFURAL
+TraitData <- read.csv("Malt_concentrations_Updated.csv", header= TRUE, row.names = 1)  # plates 1-9 for all strains. YNB NMR metabolite data. NOT FURFURAL
+TraitData <- read.csv("RStudio_YNB_Metabolites_Updated.csv", header= TRUE, row.names = 1)  # plates 1-9 for all strains. Malt NMR metabolite data. NOT FURFURAL
 
 
 ##data prep, match QMatrix to NMR data
