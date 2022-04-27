@@ -1,0 +1,1 @@
+powershell -Command pyinstaller --onefile --icon ETMiner.ico -w ETMiner.py --specpath . --distpath dist\ --workpath build\
