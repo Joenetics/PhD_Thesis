@@ -10,9 +10,10 @@ import multiprocessing
 from multiprocessing import process
 import json
 import statistics
-
+from math import log
 # various options listed below...
 
+# these options are toggles/commented out like this so they're easily remembered. Easy to switch & not forget
 
 #Psiko_BinaryInputFile_Plates_1-2-3-4-5-6-7SacchOnlyNoMaskedDoubleReduced_CIGAR.geno
 #full_data = True  # put StDev, etc, into output Q file.
@@ -33,7 +34,7 @@ if SC == "SacchOnly":
     SCset = "DoubleReduced"
 else:
     SCset = ""
-NumberOfCores = 3
+
 #branch_number = input("How many branches/columns you want in final q-matrix?")
 branch_number = 3
 global which_calculation
@@ -70,7 +71,6 @@ def estimate_nucleotide_frequencies(seq):
     T = seq.count('T')
     length = float(len(seq))
     return [ x/length for x in [A,C,G,T] ]
-from math import log
 
 def pdistance(seq1, seq2):
     p = 0
@@ -232,7 +232,8 @@ def Tamuradistance(seq1,seq2):
         print("Tried to take log of a negative number")
     return d
 
-
+# constructing the 'average' of a cluster of genomes. Uses ratio of alleles per position to randomly assign to average
+# i.e, if 70% of genomes have A at position X, then average genome will have A 70% of the time for pos. X
 def average_of_strains(all_genomes):
     blank_genome_counterA = [0] * len(all_genomes[0])
     blank_genome_counterT = [0] * len(all_genomes[0])
@@ -257,7 +258,7 @@ def average_of_strains(all_genomes):
         threshold_for_T = float(blank_genome_counterT[snp]/len(all_genomes)) + threshold_for_A
         threshold_for_G = float(blank_genome_counterG[snp]/len(all_genomes)) + threshold_for_T
         threshold_for_C = float(blank_genome_counterC[snp]/len(all_genomes))
-        current_score = random.random()
+        current_score = random.random()  # the random bit
         if current_score <= threshold_for_A:
             averaged_genome[snp] = "A"
         elif threshold_for_A < current_score <= threshold_for_T:
@@ -273,7 +274,8 @@ def average_of_strains(all_genomes):
     averaged_genome = " ".join(averaged_genome)
     return averaged_genome
 
-
+# this bit determines which genome will be a new branch; the one with the largest sum of distances to all other
+# genomes will be picked. This means you get as diverse an initial set as possible. Later, these branches are grown
 def next_branch(current_branches_dictionary, all_data_dictionary):
     current_branches = []
     for eachbranch in current_branches_dictionary:
@@ -292,7 +294,7 @@ def next_branch(current_branches_dictionary, all_data_dictionary):
                             adding_scores_dictionary[potential_branch] = every_strain_matched_dictionary[(branch + "_" + potential_branch)]
 
                     else:
-                        print("DD")
+                        print("Error. Debug!")  # this should never trigger. sort of a debug
                         if potential_branch in adding_scores_dictionary:
                             adding_scores_dictionary[potential_branch] = float(adding_scores_dictionary[potential_branch] + pdistance(all_data_dictionary[branch], all_data_dictionary[potential_branch]))
                         else:
@@ -306,7 +308,7 @@ def next_branch(current_branches_dictionary, all_data_dictionary):
                             adding_scores_dictionary[potential_branch] = every_strain_matched_dictionary[(branch + "_" + potential_branch)]
 
                     else:
-                        print("DD")
+                        print("Error. Debug!")
                         if potential_branch in adding_scores_dictionary:
                             adding_scores_dictionary[potential_branch] = float(adding_scores_dictionary[potential_branch] + Jukes_Cantor_distance(all_data_dictionary[branch], all_data_dictionary[potential_branch]))
                         else:
@@ -319,7 +321,7 @@ def next_branch(current_branches_dictionary, all_data_dictionary):
                             adding_scores_dictionary[potential_branch] = every_strain_matched_dictionary[(branch + "_" + potential_branch)]
 
                     else:
-                        print("DD")
+                        print("Error. Debug!")
                         if potential_branch in adding_scores_dictionary:
                             adding_scores_dictionary[potential_branch] = float(adding_scores_dictionary[potential_branch] + TNdistance(all_data_dictionary[branch], all_data_dictionary[potential_branch]))
                         else:
@@ -332,7 +334,7 @@ def next_branch(current_branches_dictionary, all_data_dictionary):
                             adding_scores_dictionary[potential_branch] = every_strain_matched_dictionary[(branch + "_" + potential_branch)]
 
                     else:
-                        print("DD")
+                        print("Error. Debug!")
                         if potential_branch in adding_scores_dictionary:
                             adding_scores_dictionary[potential_branch] = float(adding_scores_dictionary[potential_branch] + K2Pdistance(all_data_dictionary[branch], all_data_dictionary[potential_branch]))
                         else:
@@ -345,7 +347,7 @@ def next_branch(current_branches_dictionary, all_data_dictionary):
                             adding_scores_dictionary[potential_branch] = every_strain_matched_dictionary[(branch + "_" + potential_branch)]
 
                     else:
-                        print("DD")
+                        print("Error. Debug!")
                         if potential_branch in adding_scores_dictionary:
                             adding_scores_dictionary[potential_branch] = float(adding_scores_dictionary[potential_branch] + Tamuradistance(all_data_dictionary[branch], all_data_dictionary[potential_branch]))
                         else:
@@ -355,7 +357,8 @@ def next_branch(current_branches_dictionary, all_data_dictionary):
     best_branch = max(adding_scores_dictionary, key=adding_scores_dictionary.get)  # highest score = highest nucleotide difference. Find diverse strains to determine cluster origins
     return best_branch
 
-
+# The branches are set; now this assigns genomes to the already-existing branched genomes. Sort of a tree with
+# branches and sub-branches, subsub-b,...etc. eventually builds trees.
 def adding_sub_strain(current_branches_dictionary, all_data_dictionary):
     current_branches = []
     for eachbranch in current_branches_dictionary:
@@ -389,7 +392,9 @@ def adding_sub_strain(current_branches_dictionary, all_data_dictionary):
     best_branch = str(min(eachbranch_dictioary, key=eachbranch_dictioary.get)) + "-" + str(eachbranch_dictioary[min(eachbranch_dictioary, key=eachbranch_dictioary.get)])  # parent_branch-subbranch-score  # only add new strain where it fits best on present tree (parent == on current tree, child == potential strain addition)
     return best_branch
 
-
+# finding the first branch is the one with least similarity to all other strains. Most might make sense; but wanted to
+# join logic with other branches. Otherwise all the 'origin points' of the trees will cluster together. Which makes no
+# sense.
 def first_branch(all_data_dictionary):  # Best starting branch/trunk will be strain with lowest similarity to another. Meaning, diverse strains already identified
     adding_scores_dictionary = {}      # This dictionary will store sum of distances of each potential branch from all current branches
     best_strain_score = 0  # initialise it. every strain will match more than 0%, so should be fine.
@@ -516,6 +521,7 @@ for eachbranch in starting_branches:
 
 print(f"{datetime.datetime.now()}: Main tree roots constructed... ")
 
+# If we need more 'parent' roots, then find another tree root.
 child_to_parent_dictionary = {}
 while len(all_branches) < len(strains_dictionary):
     sub_tree_placing = adding_sub_strain(all_branches, strains_dictionary)
@@ -545,7 +551,7 @@ print(f"{datetime.datetime.now()}: Tree built... ")
 
 Number_of_AncestralGenomes = 10  # change this number the number of average genomes.
 Eachstrain_Master_Cluster_Dictionary = {}
-
+# add genomes to trees being built
 for AncestralGenome in range(0, Number_of_AncestralGenomes):
     main_branch_average_genomes = {}
     cluster_names = []
@@ -647,7 +653,7 @@ for AncestralGenome in range(0, Number_of_AncestralGenomes):
             Eachstrain_Master_Cluster_Dictionary[eachstrain] = ["\t".join(strain_counter_list)]
     print(f"{datetime.datetime.now()}: Average genomes constructed... {str(float(int(AncestralGenome + 1)/Number_of_AncestralGenomes) * 100)}%")
 
-
+# created average genomes are then used as the basis to determine Q-Matrix of each genome.
 print(f"{datetime.datetime.now()}: Length of main branch average genomes = {len(main_branch_average_genomes)}")
 eachstrain_matched_to_clusters = {}
 for eachstrain in Eachstrain_Master_Cluster_Dictionary:
